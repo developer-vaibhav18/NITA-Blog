@@ -35,9 +35,7 @@ const blogSchema = new Schema(
 
 // creating model
 
-const Blog = mongoose.model("blog", blogSchema);
+const Blog = mongoose.model("Blog", blogSchema);
 
 // exporting model
-module.exports = {
-  Blog,
-};
+module.exports = Blog;

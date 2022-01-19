@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+// const morgan = require("morgan");
+
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const myProfileRoutes = require("./routes/myProfileRoutes");
@@ -11,6 +13,11 @@ const app = express();
 // middleware
 app.use(express.static("public"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// app.use((req, res, next) => {
+//   res.locals.path = req.path;
+//   next();
+// });
 app.use(cookieParser());
 
 // view engine
@@ -33,5 +40,5 @@ app.get("*", checkUser);
 app.get("/", (req, res) => res.render("home"));
 app.get("/smoothies", requireAuth, (req, res) => res.render("smoothies"));
 app.use(authRoutes);
-app.use("/myProfile", myProfileRoutes);
-app.use("/blogs", blogRoutes);
+app.use("/myProfile", requireAuth, myProfileRoutes);
+app.use("/blogs", requireAuth, blogRoutes);
