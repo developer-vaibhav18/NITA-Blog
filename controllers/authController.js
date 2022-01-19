@@ -106,3 +106,12 @@ module.exports.logout_get = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.redirect("/");
 };
+
+// {
+//     "author":"vk chutad",
+//     "title" : "abcd",
+//     "snippet" : "abcde",
+//     "body" : {
+//         "text" : "abcdefghi"
+//     }
+// }
