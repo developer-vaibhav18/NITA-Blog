@@ -30,7 +30,7 @@ module.exports.myProfileEdit_post = async (req, res) => {
       }
     );
     console.log("Success!");
-    res.status(200).json({ docs: "docs" });
+    res.status(200).json({ docs: docs });
   } catch {
     console.log("Failed!");
   }
