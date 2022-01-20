@@ -1,4 +1,3 @@
-const e = require("express");
 const User = require("../models/User");
 
 module.exports.myProfile_get = (req, res) => {
@@ -10,11 +9,11 @@ module.exports.myProfileEdit_get = (req, res) => {
 };
 
 module.exports.myProfileEdit_post = async (req, res) => {
-  const { id, password, name, batch, branch, about } = req.body;
+  const { _id, password, name, batch, branch, about } = req.body;
 
   try {
     await User.findByIdAndUpdate(
-      { _id: id.$oid },
+      { _id: _id.$oid },
       {
         password: password,
         name: name,
