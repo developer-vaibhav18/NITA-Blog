@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const handleErrors = (err) => {
   console.log(err.message, err.code);
   let errors = { email: "", password: "" };
-  // damn man i feel so good
+
   // incorrect email
   if (err.message === "incorrect email") {
     errors.email = "That email is not registered";

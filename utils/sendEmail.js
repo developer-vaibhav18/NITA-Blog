@@ -27,5 +27,3 @@ const sendEmail = async (email, subject, text) => {
 };
 
 module.exports = sendEmail;
-//password-  coder_vk2000@
-// gmail-    helpingkuga@gmail.com
