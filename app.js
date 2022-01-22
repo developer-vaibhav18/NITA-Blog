@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const morgan = require("morgan");
+require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
@@ -8,6 +8,7 @@ const myProfileRoutes = require("./routes/myProfileRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const cookieParser = require("cookie-parser");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
+const resetPasswordRoutes = require("./routes/resetPasswordRoutes");
 
 const app = express();
 
@@ -22,8 +23,7 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 // database connection
-const dbURI =
-  "mongodb+srv://vk:yPhVv93BEFRH3Xq@nita-site.3vi9m.mongodb.net/Chutad?retryWrites=true&w=majority";
+const dbURI = process.env.DB;
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
@@ -41,5 +41,4 @@ app.use(authRoutes);
 app.use("/myProfile", requireAuth, myProfileRoutes);
 app.use("/blogs", requireAuth, blogRoutes);
 app.use("/search", searchRoutes);
-
-// https://cloudinary.com/users/verify_email?token=3HiOg2YgUgfmT_jbwSm_.dARfo9F3aZVYz81bsYiV
+app.use("/resetPassword", resetPasswordRoutes);

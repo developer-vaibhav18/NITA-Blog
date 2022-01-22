@@ -126,4 +126,13 @@ userSchema.statics.login = async function (email, password) {
 
 const User = mongoose.model("user", userSchema);
 
-module.exports = User;
+const validate = (user) => {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+  });
+  return schema.validate(user);
+};
+
+module.exports = { User, validate };

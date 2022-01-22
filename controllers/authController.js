@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const { User } = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 // handle errors
@@ -38,7 +38,7 @@ const handleErrors = (err) => {
 // create json web token
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
-  return jwt.sign({ id }, "net ninja no More secret", {
+  return jwt.sign({ id }, process.env.SECRET, {
     expiresIn: maxAge,
   });
 };
@@ -56,7 +56,8 @@ module.exports.signup_post = async (req, res) => {
   const {
     email,
     password,
-    name,
+    firstName,
+    secondName,
     batch,
     branch,
     about,
@@ -70,7 +71,8 @@ module.exports.signup_post = async (req, res) => {
     const user = await User.create({
       email,
       password,
-      name,
+      firstName,
+      secondName,
       batch,
       branch,
       about,
@@ -106,12 +108,3 @@ module.exports.logout_get = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.redirect("/");
 };
-
-// {
-//     "author":"vk chutad",
-//     "title" : "abcd",
-//     "snippet" : "abcde",
-//     "body" : {
-//         "text" : "abcdefghi"
-//     }
-// }
