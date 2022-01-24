@@ -9,7 +9,7 @@ const searchRoutes = require("./routes/searchRoutes");
 const cookieParser = require("cookie-parser");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 const resetPasswordRoutes = require("./routes/resetPasswordRoutes");
-
+const emailVerificationRoutes = require("./routes/emailVerificationRoutes");
 const app = express();
 
 // middleware
@@ -42,3 +42,4 @@ app.use("/myProfile", requireAuth, myProfileRoutes);
 app.use("/blogs", requireAuth, blogRoutes);
 app.use("/search", searchRoutes);
 app.use("/resetPassword", resetPasswordRoutes);
+app.use("/emailVerification", emailVerificationRoutes);

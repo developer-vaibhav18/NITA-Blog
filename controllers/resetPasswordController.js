@@ -3,7 +3,7 @@ const Token = require("../models/Token");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const Joi = require("joi");
-const { format } = require("path");
+// const { format } = require("path");
 
 module.exports.generateResetPasswordLink_post = async (req, res) => {
   try {
@@ -33,7 +33,7 @@ module.exports.generateResetPasswordLink_post = async (req, res) => {
   }
 };
 
-// get Request to be created for resetPassword_get which will return a form to enter new password
+// TODO: get Request to be created for resetPassword_get which will return a form to enter new password
 // module.exports.resetPassword_get = async(req, res) =>{
 //   const schema = Joi.object({ password: Joi.string().required() });
 //   const { error } = schema.validate(req.body);
