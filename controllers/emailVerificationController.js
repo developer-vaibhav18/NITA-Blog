@@ -38,14 +38,9 @@ module.exports.emailVerification_get = async (req, res) => {
     });
     if (!token) return res.status(400).send("Invalid link or expired");
 
-    // await emailToken.delete();
-    // /signup/token
     const link = `/signup/${token.token}`;
-    // console.log(link);
     res.redirect(link);
   } catch (error) {
     console.log(error);
   }
 };
-//pandeyp99945@outlook.com
-// http://localhost:3000/emailVerification/19ca45d9b447fa8b54968e1d2c81ee7a1cc7c624db02b571fea6a9de4cd24230
